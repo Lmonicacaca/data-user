@@ -1,0 +1,16 @@
+server:
+  port: 9977
+
+spring:
+  application:
+    name: data-user
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9911/eureka/
+  should-use-dns: false
+  instance:
+    prefer-ip-address: true  #显示实例的IP配置
+    instance-id: ${spring.application.name}:${server.port}
