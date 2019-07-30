@@ -9,8 +9,22 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:9911/eureka/
+      defaultZone: http://localhost:9911/eureka/,http://localhost:9912/eureka/
   should-use-dns: false
   instance:
     prefer-ip-address: true  #显示实例的IP配置
     instance-id: ${spring.application.name}:${server.port}
+
+#开启熔断机制
+feign:
+  hystrix:
+    enabled: true
+
+# 设置超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
